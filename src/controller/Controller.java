@@ -3,25 +3,27 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import Adapteur.Adptateur;
 import Adapteur.IAdapteur;
 import modele.Item;
+import view.Vue;
+import view.VueTable;
 
-public class Controller implements IController{
+public class Controller{
+
+	private Adptateur adapteur;
+	private Vue vue;
+	private VueTable vueTable;
 	
-	private IAdapteur adapteur;
-
-	@Override
-	public void addItem(Item item) {
-		// TODO Auto-generated method stub
-		adapteur.addItem(item);
+	/*Initialisation des données
+	 * La fonction listener est faite dans la classe Vue directements
+	 */
+	public Controller(Adptateur adapteur) {
+		super();
+		this.adapteur = adapteur;
 		
-	}
-
-	@Override
-	public void removeItem(Item item) {
-		// TODO Auto-generated method stub
-		adapteur.removeItem(item);
-		
+		this.vue = this.adapteur.getVue();
+		this.vueTable = this.adapteur.getVueTable();
 	}
 
 

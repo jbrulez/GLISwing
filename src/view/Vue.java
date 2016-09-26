@@ -146,10 +146,6 @@ public class Vue extends JComponent implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	 static double computeAngle(double total,double data){
-	        return 360*data/total;
-	}
 	 
 		
 		public String getTitre() {
@@ -158,7 +154,6 @@ public class Vue extends JComponent implements MouseListener{
 
 		
 		public List<Item> getItems() {
-			// TODO Auto-generated method stub
 			return this.modele.getItems();
 	}
 

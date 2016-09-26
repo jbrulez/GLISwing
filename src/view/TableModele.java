@@ -6,6 +6,7 @@ import modele.ModeleData;
 public class TableModele extends AbstractTableModel{
 	
 	private ModeleData modele;
+	private Vue vue;
 	
 	private String[] m_colNames = {"Nom", "Montant", "Description"};
 	

@@ -6,12 +6,15 @@ import java.awt.LayoutManager;
 import java.awt.ScrollPane;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
+import Adapteur.Adptateur;
+import controller.Controller;
 import modele.IModeleData;
 import modele.Item;
 import modele.ModeleData;
@@ -24,6 +27,8 @@ public class App {
 	public static void main(String[] args) {
 		
 		IModeleData modele = new ModeleData();
+		ModeleData mod = new ModeleData();
+		VueTable vTable = new VueTable();
 		System.out.println();
 		
 	
@@ -39,18 +44,16 @@ public class App {
 		
 		Vue vue = new Vue(modele);
 		TableModele tableModele = new TableModele((ModeleData) modele);
-		//VueTable table = new VueTable(modele, tableModele);
 		
-		
-		//TableModele table = new TableModele(modele);
+		Adptateur adaptateur = new Adptateur(mod, vue, vTable);
+		Controller controller = new Controller(adaptateur);
 		
 		JFrame fenetre = new JFrame();
 		JFrame tableau = new JFrame();
 		JTable tablej = new JTable(tableModele);
 		
-		//JPanel graphiqueT = new JPanel();
-		//JPanel tableData = new JPanel();
-		//tableData.setLayout(new BoxLayout(tableData, BoxLayout.LINE_AXIS));
+		JPanel graphiqueT = new JPanel();
+		JPanel tableData = new JPanel();
 
 		fenetre.setTitle("GLI TP1");
 		fenetre.setSize(600,500);
@@ -64,18 +67,6 @@ public class App {
 		tableau.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableau.setLocationRelativeTo(null);
 	
-		
-		//graphique.add(vue);
-		//tableData.add(table);
-		/*
-		//Create a split pane with the two scroll panes in it.
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, graphique, table);
-		splitPane.setOneTouchExpandable(true);
-		splitPane.setDividerLocation(100);
-		*/
-	
-		
-		//fenetre.setContentPane(splitPane);
 		tableau.getContentPane().add((new JScrollPane(tablej)));
 		
 		tableau.pack();

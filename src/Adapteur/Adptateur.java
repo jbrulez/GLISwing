@@ -6,11 +6,13 @@ import modele.IModeleData;
 import modele.Item;
 import modele.ModeleData;
 import view.Vue;
+import view.VueTable;
 
 public class Adptateur implements IAdapteur, IModeleData{
 	
 	private ModeleData modele;
 	private Vue vue;
+	private VueTable vueTable;
 
 	@Override
 	public void addItem(Item i) {
@@ -29,58 +31,83 @@ public class Adptateur implements IAdapteur, IModeleData{
 		return modele;
 	}
 
+	public void setModele(ModeleData modele, Vue vue, VueTable vueTable) {
+		this.modele = modele;
+		this.vue = vue;
+		this.vueTable = vueTable;
+	}
+
+	public Adptateur(ModeleData modele, Vue vue, VueTable vueTable) {
+		super();
+		this.modele = modele;
+		this.vue = vue;
+		this.vueTable = vueTable;
+	}
+
+	public Vue getVue() {
+		return vue;
+	}
+
+	public void setVue(Vue vue) {
+		this.vue = vue;
+	}
+
+	public VueTable getVueTable() {
+		return vueTable;
+	}
+
+	public void setVueTable(VueTable vueTable) {
+		this.vueTable = vueTable;
+	}
+
 	public void setModele(ModeleData modele) {
 		this.modele = modele;
 	}
 
-	public Adptateur(ModeleData modele, Vue vue) {
-		super();
-		this.modele = modele;
-		this.vue = vue;
-	}
+	public void notifierVue() {
+		this.vue.notifierVue();
+}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return modele.getName();
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		notifyView();
+		modele.setName(name);
 		
 	}
 
 	@Override
 	public List<Item> getItems() {
-		// TODO Auto-generated method stub
-		return null;
+		return modele.getItems();
 	}
 
 	@Override
 	public void setItem(List<Item> item) {
-		// TODO Auto-generated method stub
-		notifyView();
+		modele.setItem(item);
+		
 	}
 
 	@Override
 	public float getTotalValeurItem() {
-		// TODO Auto-generated method stub
-		return 0;
+		return modele.getTotalValeurItem();
 	}
 
 	@Override
 	public void setTotalValeurItem(float totalValeurItem) {
-		// TODO Auto-generated method stub
-		notifyView();
+		modele.setTotalValeurItem(totalValeurItem);
+		
+	}
+
+	public void callRepaint() {
+		this.vue.callRepaint();
 	}
 
 	@Override
 	public void notifyView() {
 		// TODO Auto-generated method stub
-		vue.repaint();
 		
 	}
-
 }
